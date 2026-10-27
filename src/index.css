@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Variables base de tu marca UTAMA */
+@theme {
+  --color-brand-primary: #d4a373;
+  --color-brand-secondary: #2a9d8f;
+  --color-bg-panel: #f9f9f9;
+}
