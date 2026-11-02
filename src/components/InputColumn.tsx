@@ -1,12 +1,21 @@
 // src/components/InputColumn.tsx
-import React, { useRef } from 'react';
-import { UploadCloud, Loader2, Image as ImageIcon } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { UploadCloud, Loader2, Cpu } from 'lucide-react';
 import { useProductStore } from '../store/useProductStore';
 import { analyzeProductWithAI } from '../api/gemini';
+
+const MODEL_OPTIONS = [
+  { id: 'gemini-3.6-flash', name: '3.6 Flash (Ayuda completa)' },
+  { id: 'gemini-3.5-flash-lite', name: '3.5 Flash-Lite (Respuestas rápidas)' },
+  { id: 'gemini-3.1-pro-preview', name: '3.1 Pro (Razonamiento avanzado)' },
+];
 
 export const InputColumn = () => {
   const { input, setInputField, setEnrichmentData, isAnalyzing, setIsAnalyzing } = useProductStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Estado local para almacenar el modelo seleccionado
+  const [selectedModel, setSelectedModel] = useState<string>('gemini-3.6-flash');
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -25,14 +34,24 @@ export const InputColumn = () => {
     
     setIsAnalyzing(true);
     try {
-      const enrichedData = await analyzeProductWithAI(input);
+      const enrichedData = await analyzeProductWithAI(input, selectedModel);
       setEnrichmentData(enrichedData);
-    } catch (error) {
-      alert("Hubo un error al analizar la imagen. Revisá la consola para más detalles.");
+    } catch (error: any) {
+      alert(error?.message || "Hubo un error al analizar la imagen. Revisá la consola para más detalles.");
       console.error(error);
     } finally {
       setIsAnalyzing(false);
     }
+  };
+
+  // Handler seguro para inputs numéricos decimales (permite escribir 0.2, 0.9, etc.)
+  const handleNumericChange = (field: 'width' | 'depth' | 'height' | 'weight', value: string) => {
+    if (value === '') {
+      setInputField(field, '');
+      return;
+    }
+    const parsed = parseFloat(value);
+    setInputField(field, isNaN(parsed) ? '' : parsed);
   };
 
   return (
@@ -66,6 +85,25 @@ export const InputColumn = () => {
 
       {/* Formulario */}
       <div className="flex flex-col gap-4">
+        {/* Selector de Modelo Gemini */}
+        <div>
+          <label className="block text-xs font-medium text-gray-500 mb-1 flex items-center gap-1">
+            <Cpu className="w-3.5 h-3.5 text-[#d4a373]" /> Modelo de IA
+          </label>
+          <select
+            value={selectedModel}
+            onChange={(e) => setSelectedModel(e.target.value)}
+            disabled={isAnalyzing}
+            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#d4a373] disabled:opacity-50 font-medium cursor-pointer"
+          >
+            {MODEL_OPTIONS.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div>
           <label className="block text-xs font-medium text-gray-500 mb-1">Nombre provisional</label>
           <input 
@@ -87,22 +125,51 @@ export const InputColumn = () => {
           />
         </div>
 
+        {/* Inputs numéricos con step="any" para permitir cualquier decimal */}
         <div className="grid grid-cols-4 gap-2">
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Ancho</label>
-            <input type="number" value={input.width || ''} onChange={(e) => setInputField('width', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm" />
+            <input 
+              type="number" 
+              step="any"
+              placeholder="0.0"
+              value={input.width ?? ''} 
+              onChange={(e) => handleNumericChange('width', e.target.value)} 
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a373]" 
+            />
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Prof.</label>
-            <input type="number" value={input.depth || ''} onChange={(e) => setInputField('depth', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm" />
+            <input 
+              type="number" 
+              step="any"
+              placeholder="0.0"
+              value={input.depth ?? ''} 
+              onChange={(e) => handleNumericChange('depth', e.target.value)} 
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a373]" 
+            />
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Alto</label>
-            <input type="number" value={input.height || ''} onChange={(e) => setInputField('height', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm" />
+            <input 
+              type="number" 
+              step="any"
+              placeholder="0.0"
+              value={input.height ?? ''} 
+              onChange={(e) => handleNumericChange('height', e.target.value)} 
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a373]" 
+            />
           </div>
           <div>
             <label className="block text-xs font-medium text-gray-500 mb-1">Kg</label>
-            <input type="number" step="0.01" value={input.weight || ''} onChange={(e) => setInputField('weight', Number(e.target.value))} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm" />
+            <input 
+              type="number" 
+              step="any"
+              placeholder="0.0"
+              value={input.weight ?? ''} 
+              onChange={(e) => handleNumericChange('weight', e.target.value)} 
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#d4a373]" 
+            />
           </div>
         </div>
 
