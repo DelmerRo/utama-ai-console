@@ -42,4 +42,7 @@ export interface PromptsData {
   ventas: string;
   infografia: string;
   copywriting: string;
+  escala: string;
+  historia: string;
+  reel: string;
 }

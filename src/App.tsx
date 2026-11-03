@@ -1,8 +1,8 @@
 // src/App.tsx
 import React from 'react';
-import { InputColumn } from './components/InputColumn';
-import { EnrichmentColumn } from './components/EnrichmentColumn';
-import { PromptsColumn } from './components/PromptsColumn';
+import { InputColumn } from './components/view/InputColumn';
+import { EnrichmentColumn } from './components/view/EnrichmentColumn';
+import { PromptsColumn } from './components/view/PromptsColumn';
 
 function App() {
   return (

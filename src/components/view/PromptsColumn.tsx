@@ -1,7 +1,7 @@
 // src/components/PromptsColumn.tsx
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { useProductStore } from '../store/useProductStore';
+import { useProductStore } from '../../store/useProductStore';
 
 interface PromptCardProps {
   title: string;
@@ -87,16 +87,35 @@ export const PromptsColumn = () => {
           content={prompts.ventas} 
         />
         <PromptCard 
-          title="5. Infografía de Medidas" 
+          title="5. Escala y Proporción Real" 
+          badge="Foto 5" 
+          desc="Anclaje espacial con manos humanas u objetos cotidianos (lente 50mm) para que el cliente dimensione el tamaño exacto." 
+          content={prompts.escala} 
+        />
+        <PromptCard 
+          title="6. Infografía de Medidas" 
           badge="Infografía" 
           desc="Lienzo limpio con espacio negativo idóneo para incorporar diagramas de cotas." 
           content={prompts.infografia} 
         />
         <PromptCard 
-          title="6. Copy & SEO" 
+          title="7. Copy & SEO" 
           badge="Copywriting" 
           desc="Prompt avanzado de Neuromarketing. Copiá este texto y pégalo en Gemini/ChatGPT adjuntando la foto." 
           content={prompts.copywriting} 
+          isSpecial={true}
+        />
+        <PromptCard 
+          title="8. Historia de IG (Nuevo Ingreso)" 
+          badge="Story 9:16" 
+          desc="Formato vertical con espacio negativo superior e inferior reservado para encuestas, links y textos de Instagram." 
+          content={prompts.historia} 
+        />
+        <PromptCard 
+          title="9. Guion para Reel / TikTok" 
+          badge="Video Script" 
+          desc="Estructura de 15 segundos con gancho visual, audio sugerido y textos en pantalla para presentar el producto." 
+          content={prompts.reel} 
           isSpecial={true}
         />
       </div>
