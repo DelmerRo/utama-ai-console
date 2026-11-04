@@ -105,16 +105,16 @@ export const PromptsColumn = () => {
           content={prompts.copywriting} 
           isSpecial={true}
         />
-        <PromptCard 
+       <PromptCard 
           title="8. Historia de IG (Nuevo Ingreso)" 
           badge="Story 9:16" 
-          desc="Formato vertical con espacio negativo superior e inferior reservado para encuestas, links y textos de Instagram." 
+          desc="Storyboard de 3 placas (Video + Textos) respetando zonas seguras y sin encuestas." 
           content={prompts.historia} 
         />
         <PromptCard 
           title="9. Guion para Reel / TikTok" 
           badge="Video Script" 
-          desc="Estructura de 15 segundos con gancho visual, audio sugerido y textos en pantalla para presentar el producto." 
+          desc="Estructura de 15 segundos para animar desde la imagen de referencia con gancho visual y textos." 
           content={prompts.reel} 
           isSpecial={true}
         />
