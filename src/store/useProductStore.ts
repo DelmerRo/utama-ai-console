@@ -51,7 +51,8 @@ const initialPrompts: PromptsData = {
   reel: "",
   meliVideo: "",
   reelsUgc: "",
-  storiesSecuencia: ""
+  storiesSecuencia: "",
+  carruselPrompts: []
 };
 
 export const useProductStore = create<ProductState>((set, get) => ({
