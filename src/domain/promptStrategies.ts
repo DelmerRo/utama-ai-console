@@ -43,82 +43,145 @@ export const promptBuilders = {
         `High-end commercial catalog photograph of ${ctx.name} with ${ctx.material}. Immaculate centered square composition, paired with a single curated minimalist decorative accent. Staged in a bright architectural minimalist space with crisp morning sunlight creating sharp, clean, high-contrast decorative shadows. Atmosphere conveys serene tranquility with soft, slightly warm neutral daylight, creating an inviting look while strictly avoiding harsh cool or cold color casts. STRICT SCALE DIRECTIVE: Real-world physical dimensions are ${ctx.dims}. The engine must maintain precise realistic proportions relative to the surrounding architectural space and props. Pure luxury retail vibe, high product definition, clean lines, uncluttered ${ctx.style} fusion style, aspect ratio 1:1 --ar 1:1 --v 6.0`,
 
     escala: (ctx: PromptContext) =>
-    `Aspirational commercial lifestyle photography explicitly designed to communicate the EXACT physical scale and real-world proportions of ${ctx.name} (${ctx.material}). STRICT REAL-WORLD DIMENSIONS BINDING: ${ctx.dims}. SCALING ANCHOR DIRECTIVE: The product MUST be displayed in direct contextual comparison to a universally recognized scale reference. If it is a tabletop or handheld item, show average-sized adult human hands naturally holding, touching, or interacting with it. If it is a larger floor item, show a portion of a human figure standing next to it or place it adjacent to standard architectural elements (like a standard doorway or dining chair). ZERO EXAGGERATION: The generation engine must strictly prevent artificial enlarging or shrinking of the product. LENS & PERSPECTIVE: Shot with a 50mm focal length lens (standard human eye perspective) to completely eliminate wide-angle spatial distortion and preserve exact relative scale. SETTING & STYLE: Placed ${ctx.context} upon a ${ctx.surface} with a ${ctx.style} aesthetic. Soft, natural daylight casting realistic shadows. Pristine e-commerce standard, aspect ratio 1:1 --ar 1:1 --v 6.0`,
+        `Aspirational commercial lifestyle photography explicitly designed to communicate the EXACT physical scale and real-world proportions of ${ctx.name} (${ctx.material}). STRICT REAL-WORLD DIMENSIONS BINDING: ${ctx.dims}. SCALING ANCHOR DIRECTIVE: The product MUST be displayed in direct contextual comparison to a universally recognized scale reference. If it is a tabletop or handheld item, show average-sized adult human hands naturally holding, touching, or interacting with it. If it is a larger floor item, show a portion of a human figure standing next to it or place it adjacent to standard architectural elements (like a standard doorway or dining chair). ZERO EXAGGERATION: The generation engine must strictly prevent artificial enlarging or shrinking of the product. LENS & PERSPECTIVE: Shot with a 50mm focal length lens (standard human eye perspective) to completely eliminate wide-angle spatial distortion and preserve exact relative scale. SETTING & STYLE: Placed ${ctx.context} upon a ${ctx.surface} with a ${ctx.style} aesthetic. Soft, natural daylight casting realistic shadows. Pristine e-commerce standard, aspect ratio 1:1 --ar 1:1 --v 6.0`,
 
     infografia: (ctx: PromptContext) =>
         `Minimalist home decor catalog infographic for a single ${ctx.name} in a 1:1 square ratio. Pristine, balanced layout featuring the product placed on a smooth, warm sand-colored surface against a bright matte off-white plaster wall backdrop. Soft, abundant natural daylight creates an airy, elegant lookbook aesthetic, keeping the product's exact realistic geometry and natural ${ctx.material} texture completely unaltered. The top area is entirely clean space, designed for vector overlays. Near the bottom edge, a perfectly aligned single horizontal row of six minimalist thin-line circular layout badges is overlaid directly onto the surface. Each circle contains stacked technical text for: PRODUCTO (${ctx.name}), MATERIAL (${ctx.material}), ANCHO (${ctx.input.width} cm), PROFUNDIDAD (${ctx.input.depth} cm), ALTO (${ctx.input.height} cm), PESO (${ctx.input.weight} kg). Pure ${ctx.style} retail standard, clean geometric UI, aspect ratio 1:1 --ar 1:1 --v 6.0`,
 
     copywriting: (ctx: PromptContext) =>
-    `Actuá como un Copywriter E-commerce Senior experto en Neuroventas y Especialista en SEO técnico para Tiendanube y Mercado Libre Argentina.
+        `Actuá como un Director de E-commerce, Especialista en Neuromarketing, SEO Técnico y Posicionamiento Local (CABA) con amplia experiencia en el mercado argentino de Home & Deco, trabajando exclusivamente para la marca UTAMA Home & Deco.
 
-Tu objetivo es redactar la descripción persuasiva y generar todos los metadatos técnicos y atributos de ficha técnica utilizando los datos inyectados.
+Tu misión es transformar los datos del producto y la foto adjunta en una ficha comercial de altísima conversión, lista para copiar y pegar sin ediciones manuales en Tiendanube y Mercado Libre Argentina.
 
-DATOS DEL PRODUCTO A PROCESAR:
+DATOS DEL PRODUCTO INYECTADOS:
 - Nombre Provisional: ${ctx.name}
 - Estilo Decorativo: ${ctx.style}
 - Material Principal: ${ctx.material}
 - Feature Clave (Macro): ${ctx.feature}
 - Argumentos de Venta (IA): ${ctx.enrichment.argumentosVenta}
-- Dimensiones Físicas: ${ctx.dims}
+- Dimensiones Físicas del Producto: ${ctx.dims}
 - Peso Neto: ${ctx.input.weight} kg
-- DESPIECE TÉCNICO: ${ctx.input.description || 'No especificado'}
+- DESPIECE TÉCNICO Y EMBALAJE: ${ctx.input.description || 'No especificado'}
 
-INSTRUCCIONES CRÍTICAS (NEUROVENTAS Y FORMATO):
-1. Tono de marca: Rioplatense ("vos", "llevá", "transformá"), cálido, sofisticado y empático.
-2. Formato Escaneable: Usá párrafos cortos (máximo 3 líneas) para no abrumar visualmente.
-3. Integración forzada: Debes usar obligatoriamente los 'Argumentos de Venta (IA)' en los beneficios y el 'DESPIECE TÉCNICO' exacto en la sección de Especificaciones.
-4. Restricción técnica: Entregá directamente el contenido. NO agregues introducciones, confirmaciones ni bloques de código markdown (\`\`\`).
+REGLAS DE ORO (CUMPLIMIENTO ESTRICTO):
+1. Voz y Tono UTAMA: Español rioplatense natural ("vos", "llevá", "transformá", "elegí"), cálido, sensorial, minimalista y cercano. Evitá palabras vacías o clichés genéricos ("excelente calidad", "el mejor del mercado").
+2. Cero Alucinaciones Técnicas: Usá exactamente las piezas, capacidades y medidas presentes en el DESPIECE TÉCNICO y en la foto. Si el embalaje no está especificado en el input, calculá un margen lógico de protección (+2 a +4 cm por lado y +0,25 kg de caja/protección) aclarándolo como medida aproximada de embalaje reforzado.
+3. Jerarquía HTML y Limpieza Visual:
+   - En Tiendanube: Usá ÚNICAMENTE etiquetas <h2>, <h3>, <p>, <ul>, <li> y <strong>. PROHIBIDO usar <h1> (reservado al título de la ficha).
+   - En Mercado Libre: Usá TEXTO PLANO 100% limpio con encabezados en MAYÚSCULAS y guiones (-). PROHIBIDO dejar etiquetas HTML, corchetes "[...]" o textos de instrucción como "[H2 EQUIVALENTE]" en la salida.
+4. Psicología de Beneficios (Framework C-V-I): Cada viñeta de beneficio debe conectar la Característica física -> Ventaja funcional -> Impacto sensorial/emocional en la rutina diaria, atacando objeciones reales (fragilidad, espacio, limpieza).
+5. Compliance por Canal:
+   - Tiendanube: Potenciá el 20% OFF por transferencia bancaria automática y el envío Express en el día para CABA / Zona Norte.
+   - Mercado Libre: CERO menciones a redes sociales, web propia, WhatsApp o descuentos por transferencia (para evitar sanciones de ML).
+6. Salida Directa: Entregá únicamente los 4 bloques estructurados. Sin saludos, introducciones ni comentarios finales.
 
-ESTRUCTURA DE SALIDA OBLIGATORIA (Copiá y pegá este formato exacto):
+ESTRUCTURA DE SALIDA OBLIGATORIA:
 
-### 1. SEO Y CLASIFICACIÓN (TIENDANUBE Y MERCADO LIBRE)
-- **Título Publicación / SEO:** [Máximo 60 caracteres. Fórmula: Producto + Material principal + Atributo clave. SIN emojis. Clave para el algoritmo de ML]
-- **Descripción SEO (Tiendanube):** [Máximo 160 caracteres. Resumen persuasivo directo con CTA]
-- **URL amigable:** [slug-todo-en-minusculas-separado-por-guiones]
-- **Categoría Mercado Libre:** [Ruta exacta, ej: Hogar, Muebles y Jardín > Bazar y Cocina > ...]
-- **Tags (Tiendanube):** [20 etiquetas separadas por comas. Incluir: variaciones de búsqueda, material, estilo ${ctx.style}, "decoracion hogar argentina", "bazar villa ortuzar", "envios a todo el pais"]
-
-### 2. FICHA TÉCNICA (ATRIBUTOS OBLIGATORIOS MERCADO LIBRE)
-- **Marca:** UTAMA DECO
-- **Modelo:** [Sugerir un nombre de modelo comercial corto, distintivo y elegante acorde a Utama]
-- **Diseño:** [Describir la trama o diseño de la superficie basado en la foto y el estilo, ej: Liso, Texturizado, Panal, Minimalista]
-- **Forma:** [Especificar la forma geométrica o silueta física del producto, ej: Redondo, Rectangular, Cilíndrico, Orgánico]
-- **Formato de venta:** [Unidad o Pack]
-- **Unidades por pack:** [Inferir cantidad basándote en el nombre o despiece técnico. Ej: 1, 4, 6]
-- **Color principal:** [Inferir el color predominante basándote en el estilo y material]
-- **Atributos adicionales:** [Listar 2 o 3 características técnicas extra clave para ML según el producto (ej: Apto lavavajillas, Antideslizante, Ecológico)]
+=== BLOQUE 1: SEO GENERAL, LOCAL Y TIENDANUBE ===
+- **Meta Title (Título SEO Google - Máx. 60 caracteres exactos):** [Palabra clave principal + Material + Capacidad/Atributo + UTAMA Home & Deco]
+- **Meta Description (Descripción SEO - Máx. 155 caracteres exactos):** [Gancho sensorial + beneficio clave + 20% OFF transferencia + envíos a todo el país]
+- **URL Amigable (Slug):** [slug-en-minusculas-sin-acentos-ni-simbolos-separado-por-guiones]
+- **Título H1 Tiendanube (Editorial y de Marca - Entre 58 y 68 caracteres):** [Ej: Set x4 Tazas Apilables de Cerámica Texturada con Rack Metálico (285 ml)]
+- **Categoría Exacta Sugerida (Tiendanube - Catálogo Home & Deco):** [Ruta jerárquica exacta, ej: Bazar y Cocina > Vajilla > Tazas y Mugs]
+- **Línea / Colección:** [Nombre de la línea o colección UTAMA acorde al producto y al estilo ${ctx.style}]
+- **Tags / Etiquetas Estratégicas (25 etiquetas separadas por comas — SEO Nacional + Hiperlocal CABA):** [Incluir sinónimos de búsqueda, material, estilo ${ctx.style}, línea/colección, ocasión de regalo y términos locales obligatorios: "decoracion villa urquiza", "regaleria villa urquiza", "bazar villa urquiza", "home deco caba", "deco hogar belgrano", "decoracion saavedra", "decoracion coghlan", "decoracion villa ortuzar", "regalos originales caba", "envios a todo el pais", "utama home deco"]
 
 ---
 
-### 3. COPY DE VENTAS (PARA PEGAR EN LA DESCRIPCIÓN)
+=== BLOQUE 2: DESCRIPCIÓN TIENDANUBE (HTML LIMPIO H2 / H3) ===
 
-[TÍTULO PRINCIPAL EN MAYÚSCULAS BASADO EN NEUROVENTAS. DEBE CONECTAR CON LA EMOCIÓN, LA RUTINA O LA NATURALEZA. EJ: EL DETALLE QUE ELEVA CADA MOMENTO Y CONECTA CON LA NATURALEZA]
+<h2>[TITULAR EMOCIONAL EN MAYÚSCULAS QUE CONECTE CON EL RITUAL DIARIO Y LA CALIDEZ DEL HOGAR]</h2>
+<p><strong>Colección / Línea:</strong> [Nombre de la línea o colección UTAMA]</p>
+<p>[Párrafo introductorio sensorial de 2 a 3 líneas: hacé que el cliente visualice y sienta el producto en uso dentro de su casa, destacando la armonía del estilo ${ctx.style} y la nobleza del ${ctx.material}.]</p>
 
-[Párrafo introductorio (2-3 líneas): Aplicá storytelling sensorial. Hacé que el cliente imagine usar el producto en su rutina diaria resaltando la calidez del estilo ${ctx.style}].
+<h3>¿Por qué este producto transformará tu espacio?</h3>
+<ul>
+  <li><strong>[Beneficio Sensorial / Estético]:</strong> [Redactado con estructura Característica -> Ventaja -> Impacto emocional, integrando: ${ctx.enrichment.argumentosVenta}].</li>
+  <li><strong>[Beneficio Funcional / Orden]:</strong> [Cómo simplifica la rutina diaria, ahorra espacio o mejora la experiencia de uso, destacando: ${ctx.feature}].</li>
+  <li><strong>[Proporción y Versatilidad]:</strong> [Por qué sus medidas (${ctx.dims}) se adaptan con equilibrio a distintos ambientes sin recargar visualmente].</li>
+</ul>
 
-¿POR QUÉ ESTE PRODUCTO TRANSFORMARÁ TU ESPACIO?
-- **[Beneficio Emocional/Visual]:** [Redactado basándote en los argumentos: ${ctx.enrichment.argumentosVenta}].
-- **[Beneficio Funcional/Práctico]:** [Cómo facilita el día a día, el orden o el uso, destacando el atributo: ${ctx.feature}].
-- **[La Medida Perfecta]:** [Por qué sus proporciones (${ctx.dims}) son ideales para integrarse al hogar sin incomodar].
+<h3>Especificaciones Técnicas y Embalaje</h3>
+<ul>
+  <li><strong>Línea / Colección:</strong> [Nombre de la línea o colección]</li>
+  <li><strong>Incluye:</strong> [Detalle exacto de piezas según el DESPIECE TÉCNICO].</li>
+  <li><strong>Materialidad:</strong> ${ctx.material}</li>
+  <li><strong>Dimensiones del Producto:</strong> ${ctx.dims}</li>
+  <li><strong>Peso Neto:</strong> ${ctx.input.weight} kg</li>
+  <li><strong>Medidas y Especificaciones de Embalaje:</strong> [Dimensiones exactas de la caja/empaque, peso bruto total y detalle de doble protección anti-impacto para envío seguro].</li>
+  <li><strong>Cuidados y Mantenimiento:</strong> [Instrucción clara y práctica de limpieza y conservación según el material].</li>
+</ul>
 
-ESPECIFICACIONES TÉCNICAS AL DETALLE:
-- **Incluye:** [Listar de forma exacta cada pieza basándote estrictamente en el DESPIECE TÉCNICO].
-- **Materialidad:** ${ctx.material}
-- **Dimensiones Totales:** ${ctx.dims}
-- **Peso:** ${ctx.input.weight} kg
-- **Cuidados:** [Sugerencia lógica de mantenimiento diario según el material para garantizar durabilidad].
+<h3>Tip de Styling UTAMA</h3>
+<p>[Consejo concreto de interiorismo: con qué texturas, maderas, iluminación o piezas combinarlo para potenciar el estilo ${ctx.style} en su ambiente.]</p>
 
-💡 **Tip de Styling Utama:** [Consejo exclusivo de interiorismo: dónde ubicarlo, con qué colores, luces o texturas combina para potenciar al máximo el estilo ${ctx.style} en su casa].
+<h3>Preguntas Frecuentes</h3>
+<ul>
+  <li><strong>¿Cómo se procesan los pagos?</strong> 💳 <strong>Pagos Seguros:</strong> Transferencias automáticas procesadas de forma segura y transparente por <strong>Pago Nube (DLocal Argentina)</strong>. El sistema valida tu pago al instante sin necesidad de enviar comprobantes.</li>
+  <li><strong>¿Tienen stock disponible y cuándo despachan?</strong> Sí, si la publicación está activa contamos con stock real. Despachamos todos los pedidos dentro de las 24 hs hábiles (y contamos con envío Express en el día para CABA y Zona Norte comprando antes de las 13 hs).</li>
+  <li><strong>¿Hacen envíos a todo el país y cómo protegen los productos frágiles?</strong> Sí, llegamos a toda Argentina. Cada pieza se embala cuidadosamente con doble protección anti-impacto y caja reforzada para que llegue impecable a tus manos.</li>
+  <li><strong>¿Realizan cambios o devoluciones?</strong> Sí, tenés 30 días corridos desde que recibís tu compra para gestionar cambios o devoluciones si el producto no era lo que esperabas, siempre que esté sin uso y en su embalaje original.</li>
+  <li><strong>¿Es resistente el material?</strong> [Respuesta breve y contundente de 1-2 líneas justificando la resistencia, terminación y durabilidad del ${ctx.material}].</li>
+</ul>
 
-PREGUNTAS FRECUENTES:
-- *¿Tienen stock?* Sí, si la publicación está activa, tenemos stock garantizado.
-- *¿Hacen envíos?* Hacemos envíos a todo el país. Podés calcular el costo y demora ingresando tu código postal.
-- *¿Es resistente el material?* [Generá una respuesta breve de 1 línea justificando la nobleza y durabilidad del material ${ctx.material}].
+<p><strong>[CTA DE CIERRE PERSUASIVO: Ej: Sumá calidez y diseño a tus días. Agregalo al carrito ahora y aprovechá 20% OFF abonando con transferencia bancaria instantánea.]</strong></p>
 
-[CTA URGENTE: Ej: Transformá tus rituales diarios hoy. Hacé clic en "Comprar ahora" y llevate el tuyo antes de que se agote el stock.]`,
+---
 
-historia: (ctx: PromptContext) =>
-    `Actuá como un Director Creativo de Social Media experto en estrategias de conversión para Instagram Stories.
+=== BLOQUE 3: MERCADO LIBRE ARGENTINA (ALGORITMO Y FICHA TÉCNICA) ===
+- **Título Publicación Mercado Libre (MÁXIMO 60 CARACTERES EXACTOS — CONTAR LETRAS Y ESPACIOS):**
+  [FÓRMULA ESTRICTA: Producto + Sinónimo de búsqueda + Característica clave + Material + Capacidad/Medida + Accesorio. SIN conectores vacíos ("de", "con", "el", "para"), SIN emojis, SIN signos de exclamación. Ej: Set 4 Tazas Jarro Mug Apilables Ceramica 285ml Rack Metal]
+- **Categoría Sugerida Mercado Libre:** [Ruta exacta, ej: Hogar, Muebles y Jardín > Bazar y Cocina > ...]
+
+**Atributos de Ficha Técnica Mercado Libre:**
+- **Marca:** UTAMA DECO
+- **Línea:** [Nombre de la línea o colección]
+- **Modelo:** [Nombre de modelo comercial corto y distintivo acorde a UTAMA]
+- **Diseño:** [Trama o acabado de superficie: ej. Texturizado geométrico, Liso, Acanalado, Retícula]
+- **Forma:** [Silueta física: ej. Cilíndrica, Redonda, Rectangular, Orgánica]
+- **Formato de venta:** [Unidad o Pack]
+- **Unidades por pack:** [Número exacto inferido del producto o despiece. Ej: 1, 4, 6]
+- **Color principal:** [Color predominante real observado en el producto]
+- **Atributos adicionales:** [2 o 3 atributos clave para filtros laterales de ML: ej. Apto microondas, Apto lavavajillas, Incluye soporte apilador]
+
+---
+
+=== BLOQUE 4: DESCRIPCIÓN MERCADO LIBRE (TEXTO PLANO ESCANEABLE SIN HTML) ===
+
+[TITULAR PRINCIPAL EN MAYÚSCULAS ORIENTADO A BENEFICIO Y USO]
+Línea / Colección: [Nombre de la línea o colección UTAMA]
+
+[Párrafo introductorio claro y persuasivo de 2-3 líneas destacando calidad, estética ${ctx.style} y utilidad práctica inmediata.]
+
+DETALLES QUE HACEN LA DIFERENCIA
+- [Beneficio Visual / Material]: [Redactado basándote en ${ctx.enrichment.argumentosVenta}].
+- [Beneficio Práctico / Uso]: [Redactado basándote en ${ctx.feature}].
+- [Proporción y Diseño]: [Por qué sus medidas (${ctx.dims}) son cómodas y funcionales para el uso diario].
+
+CARACTERÍSTICAS TÉCNICAS Y EMBALAJE
+- Producto: ${ctx.name}
+- Línea / Colección: [Nombre de la línea o colección]
+- Incluye: [Detalle exacto según DESPIECE TÉCNICO]
+- Material: ${ctx.material}
+- Medidas del Producto: ${ctx.dims}
+- Peso Neto: ${ctx.input.weight} kg
+- Medidas y Especificaciones del Embalaje: [Detalle exacto de medidas de caja/bulto, peso embalado y protección reforzada anti-impacto]
+- Cuidados: [Instrucción breve de limpieza y mantenimiento]
+
+SUGERENCIAS DE USO Y AMBIENTACIÓN
+- [Idea concreta 1 de uso o ubicación en el hogar].
+- [Idea concreta 2 de combinación o funcionalidad].
+
+PREGUNTAS FRECUENTES
+- ¿Emiten factura? Emitimos Facturadores de Factura C, la cual se emite automáticamente según los datos fiscales cargados en tu cuenta de Mercado Libre al momento de realizar la compra.
+- ¿Tienen stock disponible y cuándo despachan? Sí, si la publicación está activa tenemos stock disponible. Despachamos todos los pedidos en tiempo y forma dentro de las 24 hs hábiles.
+- ¿Cómo llega embalado el producto? Despachamos cada pieza con doble protección anti-impacto y embalaje reforzado para asegurar que llegue intacto a cualquier punto del país.
+- ¿Hacen envíos en el día (Flex)? Sí, comprando antes del horario de corte indicado en la publicación, recibís tu pedido en el día en CABA y zonas habilitadas de GBA.
+- ¿Qué pasa si tengo algún inconveniente con mi compra? Contás con compra protegida y atención postventa directa por mensajería interna de Mercado Libre para resolver cualquier consulta al instante.
+
+[Cierre limpio de conversión orientado a hacer clic en "Comprar ahora", sin mencionar sitios web externos, redes sociales ni descuentos por transferencia].`,
+    historia: (ctx: PromptContext) =>
+        `Actuá como un Director Creativo de Social Media experto en estrategias de conversión para Instagram Stories.
 Tu objetivo es diseñar un storyboard (guion visual y de animación) de 3 placas para lanzar el NUEVO INGRESO de Utama: ${ctx.name} (${ctx.material}), basándote en la imagen adjunta para generar los contenidos audiovisuales.
 
 INSTRUCCIONES CRÍTICAS:
@@ -148,8 +211,8 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 - **Texto en pantalla (Ubicación obligatoria: Mitad inferior, por encima de la zona de mensajes pero sin tocar el borde superior):** "Hay muy poquitas unidades. Llevate el tuyo y dale ese toque Utama a tus días 🤎"
 - **Sticker de Enlace (Link - Único elemento interactivo permitido):** [Proponer un texto persuasivo para el sticker de link, colocado justo arriba del área de respuesta de la historia. Ej: "🔗 QUIERO EL MÍO 🛒"]`,
 
-reel: (ctx: PromptContext) =>
-    `Actuá como un Director Creativo de Social Media y experto en Reels virales para Instagram y TikTok.
+    reel: (ctx: PromptContext) =>
+        `Actuá como un Director Creativo de Social Media y experto en Reels virales para Instagram y TikTok.
 Tu objetivo es crear un guion técnico y visual de 15 segundos para presentar el NUEVO INGRESO de Utama: ${ctx.name} (${ctx.material}).
 
 INSTRUCCIONES CRÍTICAS:
@@ -181,8 +244,8 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 
 Conseguilo antes de que vuele en utama.com.ar (Link en bio).`,
 
-meliVideo: (ctx: PromptContext) =>
-    `@segundo-cerebro
+    meliVideo: (ctx: PromptContext) =>
+        `@segundo-cerebro
 Actuá como un Especialista en Marketing Digital, Creador de Contenido Audiovisual y Productor Ejecutivo de E-commerce para UTAMA Home & Deco. Tu objetivo es analizar la foto adjunta del producto e inyectar sus parámetros para generar un prompt de Video con IA (Img2Vid) y el Guion Técnico, optimizados para Mercado Libre Videos (Clips).
 
 DATOS PARAMETRIZADOS DEL PRODUCTO:
@@ -230,8 +293,8 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 - **Sugerencia de Variantes:** [Sugerir variantes de color/tamaño según despiece]
 - **Cierre Visual:** Transición final 100% visual y limpia mostrando la armonía del ambiente, SIN llamados a la acción ni texto publicitario.`,
 
-  reelsUgc: (ctx: PromptContext) =>
-    `@segundo-cerebro
+    reelsUgc: (ctx: PromptContext) =>
+        `@segundo-cerebro
 Actuá como un Especialista en Marketing Digital, Creador UGC y Productor Audiovisual para UTAMA Home & Deco. Tu objetivo es generar un prompt de Video con IA (Img2Vid) y el Guion Técnico Completo para un Instagram Reel, optimizado para alcance, retención y conversión.
 
 DATOS PARAMETRIZADOS DEL PRODUCTO:
@@ -281,8 +344,8 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
   📦 Envíos a todo el país.
   👉 Comentá [PALABRA_CLAVE] y te mandamos toda la info por privado!"`,
 
-  storiesSecuencia: (ctx: PromptContext) =>
-    `@segundo-cerebro
+    storiesSecuencia: (ctx: PromptContext) =>
+        `@segundo-cerebro
 Actuá como un Community Manager y Content Strategist para UTAMA Home & Deco. Tu objetivo es generar un prompt de Video con IA (Img2Vid) y un Guion Secuencial para Instagram Stories enfocado en la cercanía, la solución de un problema doméstico y el clic directo.
 
 DATOS PARAMETRIZADOS DEL PRODUCTO:
@@ -320,9 +383,9 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 
 ### C. ESTRATEGIA DE CONVERSIÓN FINAL
 - **Sticker de Enlace (Link):** "🔗 COMPRAR CON ENVÍO GRATIS 🛒" (Ubicado centrado en el tercio inferior, arriba del área de respuesta).`,
-carruselDinamico: (ctx: PromptContext) => {
-        const mainBenefit = ctx.enrichment.argumentosVenta 
-            ? ctx.enrichment.argumentosVenta.split('\n')[0].replace(/^[•\-*]\s*/, '') 
+    carruselDinamico: (ctx: PromptContext) => {
+        const mainBenefit = ctx.enrichment.argumentosVenta
+            ? ctx.enrichment.argumentosVenta.split('\n')[0].replace(/^[•\-*]\s*/, '')
             : `Diseño ${ctx.style} que transforma tu espacio al instante.`;
 
         return [
