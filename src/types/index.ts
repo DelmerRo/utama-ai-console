@@ -45,4 +45,7 @@ export interface PromptsData {
   escala: string;
   historia: string;
   reel: string;
+  meliVideo: string;
+  reelsUgc: string;
+  storiesSecuencia: string;
 }

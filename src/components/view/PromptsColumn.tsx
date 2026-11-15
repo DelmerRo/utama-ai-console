@@ -118,6 +118,27 @@ export const PromptsColumn = () => {
           content={prompts.reel} 
           isSpecial={true}
         />
+        <PromptCard 
+          title="10. Mercado Libre Videos (Sin CTA)" 
+          badge="ML Clips" 
+          desc="Guion técnico toma por toma (máx 3s) con SFX de tipeo y acción. Cumple 100% compliance de ML sin llamadas a la acción." 
+          content={prompts.meliVideo} 
+          isSpecial={true}
+        />
+        <PromptCard 
+          title="11. Instagram Reels UGC" 
+          badge="Reel UGC" 
+          desc="Guion de 15s con problema/solución, SFX foley + tipeo, CTA interactivo para automaciones y Caption SEO." 
+          content={prompts.reelsUgc} 
+          isSpecial={true}
+        />
+        <PromptCard 
+          title="12. Instagram Stories (Secuencia)" 
+          badge="Stories 9:16" 
+          desc="Secuencia paso a paso en tabla con stickers interactivos nativos (Encuestas/Sliders) y sticker de compra final." 
+          content={prompts.storiesSecuencia} 
+          isSpecial={true}
+        />
       </div>
     </div>
   );

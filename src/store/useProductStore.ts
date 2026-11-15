@@ -48,7 +48,10 @@ const initialPrompts: PromptsData = {
   copywriting: "", 
   escala: "",
   historia: "",
-  reel: ""
+  reel: "",
+  meliVideo: "",
+  reelsUgc: "",
+  storiesSecuencia: ""
 };
 
 export const useProductStore = create<ProductState>((set, get) => ({

@@ -179,7 +179,146 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 📏 Medidas: ${ctx.dims}
 📦 Envíos a todo el país.
 
-Conseguilo antes de que vuele en utama.com.ar (Link en bio).`
+Conseguilo antes de que vuele en utama.com.ar (Link en bio).`,
 
+meliVideo: (ctx: PromptContext) =>
+    `@segundo-cerebro
+Actuá como un Especialista en Marketing Digital, Creador de Contenido Audiovisual y Productor Ejecutivo de E-commerce para UTAMA Home & Deco. Tu objetivo es analizar la foto adjunta del producto e inyectar sus parámetros para generar un prompt de Video con IA (Img2Vid) y el Guion Técnico, optimizados para Mercado Libre Videos (Clips).
+
+DATOS PARAMETRIZADOS DEL PRODUCTO:
+- Nombre Comercial: ${ctx.name}
+- Materiales y Acabado: ${ctx.material}
+- Estilo Visual: ${ctx.style}
+- Contexto de Uso: ${ctx.context}
+- Feature Clave (Macro): ${ctx.feature}
+- Dimensiones Físicas Reales: ${ctx.dims}
+- Peso: ${ctx.input.weight} kg
+- Despiece / Componentes: ${ctx.input.description || ctx.enrichment.componentesVisibles || 'No especificado'}
+- Argumentos de Venta (IA): ${ctx.enrichment.argumentosVenta}
+
+REGLAS DE CUMPLIMIENTO Y FORMATO (COMPLIANCE MERCADO LIBRE):
+1. Formato 9:16 vertical. Ritmo de corte: máx 3s por plano.
+2. CERO LLAMADOS A LA ACCIÓN (Sin CTA interno ni externo, sin "comprá", "link", marcas de agua ni datos de contacto). Compliance 100% legal ML.
+3. SFX Obligatorios: SFX Foley/ASMR por cada acción física + SFX Tipeo de teclado (*keyboard typing*) o *pop* cada vez que aparece texto en pantalla.
+4. Escala Real: Mantener proporciones estrictas relativas a manos o muebles (${ctx.dims}).
+5. Directiva Img2Vid (2 Partes): Debido a limitaciones de duración del sistema, generá el prompt visual en 2 videos de 10 segundos cada uno. El segundo video debe ser la continuación exacta del primero, manteniendo total coherencia visual, de acción y de ritmo.
+6. Tono y voz: Hablá como una mujer rioplatense de forma natural y cercana (usá voseo de Argentina/Uruguay). Tu tono debe transmitir confianza, calidez y entusiasmo auténtico, manteniendo una energía dinámica para captar la atención desde el primer segundo sin sonar a publicidad tradicional.
+
+ESTRUCTURA DE SALIDA OBLIGATORIA:
+
+### A. PROMPT IMG2VID (PARA EL GENERADOR DE VIDEO)
+**PARTE 1 (0 a 10s):** "Image-to-Video. STARTING FRAME: Attached image of ${ctx.name}. MOTION: Show a cluttered space quickly transforming as the product is placed. Hands interact with the ${ctx.material} showing its scale (${ctx.dims}). Vertical 9:16."
+**PARTE 2 (10 a 20s):** "Image-to-Video. CONTINUATION OF PART 1. MOTION: Seamlessly continue the action. Macro shot of the ${ctx.feature}, pulling back to reveal the product perfectly styled in a ${ctx.style} environment (${ctx.context}). Clean, no logos. Vertical 9:16."
+
+### B. FICHA CONCEPTUAL Y GANCHO (HOOK)
+- **Producto Identificado:** ${ctx.name} (${ctx.material})
+- **Hook Inicial (0-3s):** [Acción o encuadre disruptivo para detener el scroll mostrando el problema visual del espacio]
+- **Duración Estimada:** 20 segundos divididos en dos partes.
+
+### C. GUION TÉCNICO TOMA POR TOMA
+
+| Toma / Minutaje (Máx 3s) | Ángulo y Encuadre | Control de Escala / Entorno | Texto Overlay en Pantalla | Audio / Locución (Rioplatense) | Efecto de Sonido (SFX Acción + Tipeo) |
+|---|---|---|---|---|---|
+| **Video 1 - Toma 1** (0:00 - 0:03) | Plano general / Problema | Espacio desordenado | [Texto informativo corto] | "Si tu espacio se ve así..." | SFX Tipeo + Foley desorden |
+| **Video 1 - Toma 2** (0:03 - 0:06) | Plano detalle del producto | Comparación con manos (${ctx.dims}) | [Beneficio funcional] | "Tranqui, mirá lo que ingresó." | SFX Foley encastre + Tipeo |
+| **Video 1 - Toma 3** (0:06 - 0:10) | Plano medio / Transición | Colocación en superficie (${ctx.surface}) | [Detalle del material: ${ctx.material}] | "Súper práctico y re estético." | SFX Apoyo en ${ctx.surface} + Tipeo |
+| **Video 2 - Toma 4** (0:10 - 0:13) | Plano macro (${ctx.feature}) | Textura hiperrealista | [Highlight de calidad] | "Fijate en este detalle divino." | SFX ASMR textura + Tipeo |
+| **Video 2 - Toma 5** (0:13 - 0:17) | Plano general "Después" | Entorno transformado ${ctx.style} | [Solución de espacio final] | "Te cambia el ambiente por completo." | SFX Ambiente calmo + Tipeo |
+| **Video 2 - Toma 6** (0:17 - 0:20) | Cierre 100% Visual | Producto limpio | [Variantes de color/tamaño] | Cierre musical (sin CTA) | SFX Tipeo |
+
+### D. ESTRATEGIA DE CATÁLOGO EN MERCADO LIBRE
+- **Sugerencia de Variantes:** [Sugerir variantes de color/tamaño según despiece]
+- **Cierre Visual:** Transición final 100% visual y limpia mostrando la armonía del ambiente, SIN llamados a la acción ni texto publicitario.`,
+
+  reelsUgc: (ctx: PromptContext) =>
+    `@segundo-cerebro
+Actuá como un Especialista en Marketing Digital, Creador UGC y Productor Audiovisual para UTAMA Home & Deco. Tu objetivo es generar un prompt de Video con IA (Img2Vid) y el Guion Técnico Completo para un Instagram Reel, optimizado para alcance, retención y conversión.
+
+DATOS PARAMETRIZADOS DEL PRODUCTO:
+- Nombre Comercial: ${ctx.name}
+- Estilo Visual: ${ctx.style}
+- Material Principal: ${ctx.material}
+- Feature Clave: ${ctx.feature}
+- Argumentos de Venta (IA): ${ctx.enrichment.argumentosVenta}
+- Dimensiones Físicas: ${ctx.dims}
+- Contexto Sugerido: ${ctx.context}
+- Despiece Técnico: ${ctx.input.description || 'No especificado'}
+
+REGLAS DE PRODUCCIÓN REELS:
+1. Formato 9:16 vertical. Ritmo dinámico (máx 2-3s por plano).
+2. Narrativa: El Problema (0-2s) -> Transición Solución -> El Después transformado en estilo ${ctx.style}.
+3. SFX: Foley en materiales + SFX Tipeo de teclado al aparecer textos nativos de IG.
+4. Directiva Img2Vid (2 Partes): Debido a limitaciones de duración del sistema, generá el prompt visual en 2 videos de 10 segundos cada uno. El segundo video debe ser la continuación exacta del primero, manteniendo total coherencia visual, de acción y de ritmo.
+5. Tono y voz: Hablá como una mujer rioplatense de forma natural y cercana (usá voseo de Argentina/Uruguay). Tu tono debe transmitir confianza, calidez y entusiasmo auténtico, manteniendo una energía dinámica para captar la atención desde el primer segundo sin sonar a publicidad tradicional.
+
+ESTRUCTURA DE SALIDA OBLIGATORIA:
+
+### A. PROMPT IMG2VID (PARA EL GENERADOR DE VIDEO)
+**PARTE 1 (0 a 10s):** "Image-to-Video. STARTING FRAME: Attached image. MOTION: Fast-paced UGC style. Start with a visual problem, then introduce ${ctx.name} with hands placing it down, establishing scale (${ctx.dims}). 9:16."
+**PARTE 2 (10 a 20s):** "Image-to-Video. CONTINUATION OF PART 1. MOTION: Dynamic close-ups on the ${ctx.material}, resolving into a beautiful, styled ${ctx.context} room. 9:16."
+
+### B. FICHA CONCEPTUAL
+- **Producto:** ${ctx.name} (${ctx.material})
+- **Hook Inicial:** [Acción o sonido disruptivo en los primeros 2 segundos]
+- **Audio Sugerido:** [Estilo Lo-Fi chill, acústico o ASMR en tendencia]
+
+### C. GUION TÉCNICO TOMA POR TOMA
+
+| Toma / Minutaje | Acción Visual y Ángulo | Control de Escala | Texto Nativo IG | Audio y Voz en Off (Rioplatense) | SFX (Acción + Tipeo) |
+|---|---|---|---|---|---|
+| **Vid 1 - Toma 1** (0:00 - 0:02) | Plano corto / El Problema | Espacio con ruido visual | "Si tu espacio se ve así..." | "Si te pasa esto siempre..." | SFX Pop + Tipeo |
+| **Vid 1 - Toma 2** (0:02 - 0:05) | Transición con el producto | Manos sosteniendo (${ctx.dims}) | "Necesitás esto 🤎" | "Cortá con el ruido visual, mirá." | SFX Foley movimiento + Tipeo |
+| **Vid 1 - Toma 3** (0:05 - 0:10) | Plano medio / En uso (${ctx.context}) | Proporción exacta en ambiente | [Beneficio: ${ctx.enrichment.argumentosVenta}] | "Queda re lindo y te organiza todo súper fácil." | SFX Foley encastre + Tipeo |
+| **Vid 2 - Toma 4** (0:10 - 0:14) | Macro detalle (${ctx.feature}) | Textura de ${ctx.material} | "Calidad que se siente" | "Fijate la nobleza de este material, me encanta." | SFX ASMR + Tipeo |
+| **Vid 2 - Toma 5** (0:14 - 0:20) | Plano final armonioso | Entorno ${ctx.style} ordenado | "Comentá ORDEN y te mando el link" | "Comentá abajo y te paso el link por DM." | SFX Tipeo final |
+
+### D. ESTRATEGIA DE CONVERSIÓN Y CAPTION
+- **Call To Action (CTA):** "Comentá la palabra [PALABRA_CLAVE] y te envío el link con descuento exclusivo por DM."
+- **Copy del Post (Caption SEO):**
+  "Transformá tu rutina con el toque ${ctx.style} que te faltaba 🤎 
+  El ${ctx.name} en ${ctx.material} está diseñado para simplificar y ordenar tu espacio.
+  📏 Medidas: ${ctx.dims}
+  📦 Envíos a todo el país.
+  👉 Comentá [PALABRA_CLAVE] y te mandamos toda la info por privado!"`,
+
+  storiesSecuencia: (ctx: PromptContext) =>
+    `@segundo-cerebro
+Actuá como un Community Manager y Content Strategist para UTAMA Home & Deco. Tu objetivo es generar un prompt de Video con IA (Img2Vid) y un Guion Secuencial para Instagram Stories enfocado en la cercanía, la solución de un problema doméstico y el clic directo.
+
+DATOS PARAMETRIZADOS DEL PRODUCTO:
+- Nombre Comercial: ${ctx.name}
+- Estilo: ${ctx.style}
+- Material Principal: ${ctx.material}
+- Feature Clave: ${ctx.feature}
+- Argumentos de Venta: ${ctx.enrichment.argumentosVenta}
+- Medidas Físicas: ${ctx.dims}
+- Contexto de Uso: ${ctx.context}
+- Despiece Técnico: ${ctx.input.description || 'No especificado'}
+
+REGLAS STORIES:
+1. Formato 9:16 vertical.
+2. Narrativa Antes vs Después (Prob -> Proceso/Detalle -> Después -> Conversión).
+3. Stickers Interactivos Nativos en cada placa (Encuestas, Sliders, Cuestionarios).
+4. SFX ASMR al manipular + SFX Tipeo de teclado al mostrar texto.
+5. Directiva Img2Vid (2 Partes): Debido a limitaciones de duración del sistema, generá el prompt visual en 2 videos de 10 segundos cada uno. El segundo video debe ser la continuación exacta del primero, manteniendo total coherencia visual, de acción y de ritmo.
+6. Tono y voz: Hablá como una mujer rioplatense de forma natural y cercana (usá voseo de Argentina/Uruguay). Tu tono debe transmitir confianza, calidez y entusiasmo auténtico, manteniendo una energía dinámica para captar la atención desde el primer segundo sin sonar a publicidad tradicional.
+
+ESTRUCTURA DE SALIDA OBLIGATORIA:
+
+### A. PROMPT IMG2VID (PARA EL GENERADOR DE VIDEO)
+**PARTE 1 (0 a 10s):** "Image-to-Video. STARTING FRAME: Attached image. MOTION: POV perspective. Hand brings the ${ctx.name} into the frame, showing its exact scale (${ctx.dims}) in a ${ctx.style} home. Vertical 9:16."
+**PARTE 2 (10 a 20s):** "Image-to-Video. CONTINUATION OF PART 1. MOTION: Camera glides slowly around the product placed in a beautifully lit ${ctx.context}, focusing on the ${ctx.feature}. Clean negative space for Instagram UI. Vertical 9:16."
+
+### B. SECUENCIA DE HISTORIAS DE INSTAGRAM (3 A 4 PLACAS)
+
+| Historia # | Acción Visual (Ref. Fotos) | Control de Escala | Textos y Stickers Interactivos | SFX y Voz Rioplatense |
+|---|---|---|---|---|
+| **Vid 1 - Historia 1 (El Problema)** | Muestra espacio desordenado o sin vida | Entorno real | Texto: "¿Tuyo también se ve así?" / Sticker: [Encuesta Sí/No] | SFX Tipeo / Voz: "Che, ¿a vos también te estresa ver el espacio así de lleno?" |
+| **Vid 1 - Historia 2 (El Detalle)** | Macro de ${ctx.material} y ${ctx.feature} | Manos mostrando (${ctx.dims}) | Texto: "Textura y acabado ${ctx.style} único 🌿" / Sticker: [Slider de Enamorado 😍] | SFX ASMR / Voz: "Mirá la calidez que tiene esto, no puede ser más lindo." |
+| **Vid 2 - Historia 3 (El Después)** | Producto en uso en ${ctx.context} | Ambiente equilibrado | Texto: "[Beneficio: ${ctx.enrichment.argumentosVenta}]" / Sticker: [Cuestionario u Opinión] | SFX Foley / Voz: "Literal, te cambia la vibra de todo el ambiente en dos segundos." |
+| **Vid 2 - Historia 4 (Conversión)** | Plano limpio sobre ${ctx.surface} | Producto completo | Texto: "Últimas unidades disponibles 🤎" / Sticker: [Sticker de Link a Tienda] | SFX Tipeo / Voz: "Quedan súper poquitos, llevate el tuyo acá abajo." |
+
+### C. ESTRATEGIA DE CONVERSIÓN FINAL
+- **Sticker de Enlace (Link):** "🔗 COMPRAR CON ENVÍO GRATIS 🛒" (Ubicado centrado en el tercio inferior, arriba del área de respuesta).`
 
 };  

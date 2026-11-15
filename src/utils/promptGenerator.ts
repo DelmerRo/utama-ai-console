@@ -13,6 +13,9 @@ export const generatePrompts = (input: ProductInput, enrichment: EnrichmentData)
     copywriting: promptBuilders.copywriting(ctx),
     escala: promptBuilders.escala(ctx),
     historia: promptBuilders.historia(ctx), 
-    reel: promptBuilders.reel(ctx)
+    reel: promptBuilders.reel(ctx),
+    meliVideo: promptBuilders.meliVideo(ctx),
+    reelsUgc: promptBuilders.reelsUgc(ctx),
+    storiesSecuencia: promptBuilders.storiesSecuencia(ctx)
   };
 };
