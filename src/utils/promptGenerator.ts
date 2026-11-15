@@ -16,6 +16,7 @@ export const generatePrompts = (input: ProductInput, enrichment: EnrichmentData)
     reel: promptBuilders.reel(ctx),
     meliVideo: promptBuilders.meliVideo(ctx),
     reelsUgc: promptBuilders.reelsUgc(ctx),
-    storiesSecuencia: promptBuilders.storiesSecuencia(ctx)
+    storiesSecuencia: promptBuilders.storiesSecuencia(ctx),
+    carruselPrompts: promptBuilders.carruselDinamico(ctx)
   };
 };

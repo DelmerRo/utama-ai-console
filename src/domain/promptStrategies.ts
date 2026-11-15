@@ -319,6 +319,44 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 | **Vid 2 - Historia 4 (Conversión)** | Plano limpio sobre ${ctx.surface} | Producto completo | Texto: "Últimas unidades disponibles 🤎" / Sticker: [Sticker de Link a Tienda] | SFX Tipeo / Voz: "Quedan súper poquitos, llevate el tuyo acá abajo." |
 
 ### C. ESTRATEGIA DE CONVERSIÓN FINAL
-- **Sticker de Enlace (Link):** "🔗 COMPRAR CON ENVÍO GRATIS 🛒" (Ubicado centrado en el tercio inferior, arriba del área de respuesta).`
+- **Sticker de Enlace (Link):** "🔗 COMPRAR CON ENVÍO GRATIS 🛒" (Ubicado centrado en el tercio inferior, arriba del área de respuesta).`,
+carruselDinamico: (ctx: PromptContext) => {
+        const mainBenefit = ctx.enrichment.argumentosVenta 
+            ? ctx.enrichment.argumentosVenta.split('\n')[0].replace(/^[•\-*]\s*/, '') 
+            : `Diseño ${ctx.style} que transforma tu espacio al instante.`;
+
+        return [
+            {
+                stepName: "1. Portada / Gancho (Detiene el scroll)",
+                overlayText: `¿Sentís que a tu mesa le falta calidez y personalidad? ✨ Deslizá y mirá cómo cambiarlo en segundos 👉`,
+                interactionTip: "Ubicá este texto arriba o abajo en tipografía limpia. Agregá un ícono de flecha hacia la derecha para incentivar el swipe.",
+                imagePrompt: `High-end commercial Instagram carousel cover photo (Part 1/5 - Hook). Product: ${ctx.name}, crafted from ${ctx.material}. CRITICAL GEOMETRY BINDING DIRECTIVE: Precise 4:5 high-fidelity physical recreation of the reference item. Vertical 4:5 aspect ratio, clean background with generous negative space at the top for text overlay, strong key light from the side, stunning hook visual framing the ${ctx.style} aesthetic. Zero text, pristine retail standard, aspect ratio 4:5 --ar 4:5 --v 6.0`
+            },
+            {
+                stepName: "2. La Solución / Propuesta de Valor",
+                overlayText: `El secreto está en los materiales nobles: ${mainBenefit} 🌿`,
+                interactionTip: "Texto breve en una esquina limpia para no tapar el producto en uso.",
+                imagePrompt: `Aspirational Instagram carousel narrative photo (Part 2/5 - Context & Use). Featuring ${ctx.name} (${ctx.material}) in active use ${ctx.context}. Highlighting core benefit: "${ctx.enrichment.argumentosVenta}". Maintaining exact physical scale (${ctx.dims}) and consistent ${ctx.style} lighting and warm neutral color palette. Vertical 4:5 format, zero text, aspect ratio 4:5 --ar 4:5 --v 6.0`
+            },
+            {
+                stepName: "3. Detalle Sensorial (Tacto y Calidad)",
+                overlayText: `Mirá esa textura artesanal... ${ctx.feature || 'Terminaciones pensadas para durar'} 🤎`,
+                interactionTip: "Texto minimalista en el borde inferior. Dejá que el zoom macro hable por sí solo.",
+                imagePrompt: `Aspirational Instagram carousel narrative photo (Part 3/5 - Detail & Texture). High-definition macro vertical shot focusing on the texture and finish of ${ctx.material} (${ctx.feature}). Strict visual continuity with previous carousel frames. Vertical 4:5 format, zero text, aspect ratio 4:5 --ar 4:5 --v 6.0`
+            },
+            {
+                stepName: "4. Lifestyle / Transformación del Hogar",
+                overlayText: `Imaginá tus desayunos o cenas de todos los días con esta calidez ${ctx.style} ✨ ¿Con quién estrenarías esta mesa?`,
+                interactionTip: "Pregunta directa en placa para fomentar comentarios y etiquetados.",
+                imagePrompt: `Aspirational Instagram carousel narrative photo (Part 4/5 - Lifestyle Integration). Showing ${ctx.name} beautifully styled in a broader vertical home environment, surrounded by curated props (${ctx.enrichment.componentesVisibles || 'subtle decor'}), emphasizing daily tranquility and elegance. Vertical 4:5 format, zero text, aspect ratio 4:5 --ar 4:5 --v 6.0`
+            },
+            {
+                stepName: "5. Cierre / Llamado a la Acción (CTA)",
+                overlayText: `¿Querés renovar tu hogar hoy? 🏡\n💬 Comentá "INFO" y te mandamos el link directo a nuestra tienda (o entrá al link de la bio).`,
+                interactionTip: "Centrá el texto en el espacio negativo superior/inferior. Ideal para activar respuestas automáticas en IG.",
+                imagePrompt: `High-end commercial Instagram carousel closing photo (Part 5/5 - CTA Background). Clean minimalist vertical aesthetic showcasing ${ctx.name} centered on a ${ctx.surface} with generous negative space at the top and bottom for text overlay and call-to-action. Vertical 4:5 format, zero text, aspect ratio 4:5 --ar 4:5 --v 6.0`
+            }
+        ];
+    }
 
 };  

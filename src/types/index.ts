@@ -35,6 +35,13 @@ export interface EnrichmentData {
   componentesVisibles: string;
 }
 
+export interface CarruselSlide {
+  stepName: string;       
+  imagePrompt: string;    
+  overlayText: string;    
+  interactionTip: string; 
+}
+
 export interface PromptsData {
   portada: string;
   contexto: string;
@@ -48,4 +55,5 @@ export interface PromptsData {
   meliVideo: string;
   reelsUgc: string;
   storiesSecuencia: string;
+  carruselPrompts: CarruselSlide[];
 }
