@@ -1,7 +1,7 @@
 // src/components/EnrichmentColumn.tsx
 import React from 'react';
-import { useProductStore } from '../store/useProductStore';
-import { VisualStyle } from '../types';
+import { useProductStore } from '../../store/useProductStore';
+import { VisualStyle } from '../../types';
 
 const STYLE_OPTIONS: VisualStyle[] = [
   "Nórdico", "Escandinavo", "Japandi", "Scandi-Japandi", "Wabi-Sabi",

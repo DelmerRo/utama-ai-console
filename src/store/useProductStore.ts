@@ -40,7 +40,18 @@ const initialEnrichment: EnrichmentData = {
 };
 
 const initialPrompts: PromptsData = {
-  portada: "", contexto: "", detalle: "", ventas: "", infografia: "", copywriting: ""
+  portada: "",
+  contexto: "",
+  detalle: "", 
+  ventas: "", 
+  infografia: "", 
+  copywriting: "", 
+  escala: "",
+  historia: "",
+  reel: "",
+  meliVideo: "",
+  reelsUgc: "",
+  storiesSecuencia: ""
 };
 
 export const useProductStore = create<ProductState>((set, get) => ({
