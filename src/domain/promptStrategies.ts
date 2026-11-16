@@ -48,7 +48,7 @@ export const promptBuilders = {
     infografia: (ctx: PromptContext) =>
         `Minimalist home decor catalog infographic for a single ${ctx.name} in a 1:1 square ratio. Pristine, balanced layout featuring the product placed on a smooth, warm sand-colored surface against a bright matte off-white plaster wall backdrop. Soft, abundant natural daylight creates an airy, elegant lookbook aesthetic, keeping the product's exact realistic geometry and natural ${ctx.material} texture completely unaltered. The top area is entirely clean space, designed for vector overlays. Near the bottom edge, a perfectly aligned single horizontal row of six minimalist thin-line circular layout badges is overlaid directly onto the surface. Each circle contains stacked technical text for: PRODUCTO (${ctx.name}), MATERIAL (${ctx.material}), ANCHO (${ctx.input.width} cm), PROFUNDIDAD (${ctx.input.depth} cm), ALTO (${ctx.input.height} cm), PESO (${ctx.input.weight} kg). Pure ${ctx.style} retail standard, clean geometric UI, aspect ratio 1:1 --ar 1:1 --v 6.0`,
 
-    copywriting: (ctx: PromptContext) =>
+  copywriting: (ctx: PromptContext) =>
         `Actuá como un Director de E-commerce, Especialista en Neuromarketing, SEO Técnico y Posicionamiento Local (CABA) con amplia experiencia en el mercado argentino de Home & Deco, trabajando exclusivamente para la marca UTAMA Home & Deco.
 
 Tu misión es transformar los datos del producto y la foto adjunta en una ficha comercial de altísima conversión, lista para copiar y pegar sin ediciones manuales en Tiendanube y Mercado Libre Argentina.
@@ -64,22 +64,23 @@ DATOS DEL PRODUCTO INYECTADOS:
 - DESPIECE TÉCNICO Y EMBALAJE: ${ctx.input.description || 'No especificado'}
 
 REGLAS DE ORO (CUMPLIMIENTO ESTRICTO):
-1. Voz y Tono UTAMA: Español rioplatense natural ("vos", "llevá", "transformá", "elegí"), cálido, sensorial, minimalista y cercano. Evitá palabras vacías o clichés genéricos ("excelente calidad", "el mejor del mercado").
-2. Cero Alucinaciones Técnicas: Usá exactamente las piezas, capacidades y medidas presentes en el DESPIECE TÉCNICO y en la foto. Si el embalaje no está especificado en el input, calculá un margen lógico de protección (+2 a +4 cm por lado y +0,25 kg de caja/protección) aclarándolo como medida aproximada de embalaje reforzado.
-3. Jerarquía HTML y Limpieza Visual:
-   - En Tiendanube: Usá ÚNICAMENTE etiquetas <h2>, <h3>, <p>, <ul>, <li> y <strong>. PROHIBIDO usar <h1> (reservado al título de la ficha).
+1. Voz y Tono UTAMA: Español rioplatense natural ("vos", "llevá", "transformá", "elegí"), cálido, directo, minimalista y cercano. Evitá introducciones poéticas largas o clichés genéricos ("excelente calidad", "el mejor del mercado").
+2. Hook Orientado al Problema (Mobile-First): En Tiendanube, el <h2> debe ir en formato oración (PROHIBIDO TODO EN MAYÚSCULAS) y tener máximo 55 caracteres para no ocupar 4 renglones en celular. El primer párrafo debe resolver un problema cotidiano real en máximo 3 líneas cortas.
+3. Cero Alucinaciones Técnicas: Usá exactamente las piezas, capacidades y medidas presentes en el DESPIECE TÉCNICO y en la foto. Si el embalaje no está especificado en el input, calculá un margen lógico de protección (+2 a +4 cm por lado y +0,25 kg de caja/protección) aclarándolo como medida aproximada de embalaje reforzado.
+4. Jerarquía HTML y Limpieza Visual:
+   - En Tiendanube: Usá ÚNICAMENTE etiquetas <h2>, <h3>, <p>, <ul>, <li>, <strong> y <a href="...">. PROHIBIDO usar <h1> (reservado al título de la ficha) y PROHIBIDO usar cursivas (<em> / <i>) en bloques largos.
    - En Mercado Libre: Usá TEXTO PLANO 100% limpio con encabezados en MAYÚSCULAS y guiones (-). PROHIBIDO dejar etiquetas HTML, corchetes "[...]" o textos de instrucción como "[H2 EQUIVALENTE]" en la salida.
-4. Psicología de Beneficios (Framework C-V-I): Cada viñeta de beneficio debe conectar la Característica física -> Ventaja funcional -> Impacto sensorial/emocional en la rutina diaria, atacando objeciones reales (fragilidad, espacio, limpieza).
-5. Compliance por Canal:
+5. Psicología de Beneficios (Framework C-V-I): Cada viñeta de beneficio debe conectar la Característica física -> Ventaja funcional -> Impacto en la rutina diaria, atacando objeciones reales (fragilidad, espacio, limpieza).
+6. Compliance por Canal:
    - Tiendanube: Potenciá el 20% OFF por transferencia bancaria automática y el envío Express en el día para CABA / Zona Norte.
    - Mercado Libre: CERO menciones a redes sociales, web propia, WhatsApp o descuentos por transferencia (para evitar sanciones de ML).
-6. Salida Directa: Entregá únicamente los 4 bloques estructurados. Sin saludos, introducciones ni comentarios finales.
+7. Salida Directa: Entregá únicamente los 4 bloques estructurados. Sin saludos, introducciones ni comentarios finales.
 
 ESTRUCTURA DE SALIDA OBLIGATORIA:
 
 === BLOQUE 1: SEO GENERAL, LOCAL Y TIENDANUBE ===
 - **Meta Title (Título SEO Google - Máx. 60 caracteres exactos):** [Palabra clave principal + Material + Capacidad/Atributo + UTAMA Home & Deco]
-- **Meta Description (Descripción SEO - Máx. 155 caracteres exactos):** [Gancho sensorial + beneficio clave + 20% OFF transferencia + envíos a todo el país]
+- **Meta Description (Descripción SEO - Máx. 155 caracteres exactos):** [Gancho directo + beneficio clave + 20% OFF transferencia + envíos a todo el país]
 - **URL Amigable (Slug):** [slug-en-minusculas-sin-acentos-ni-simbolos-separado-por-guiones]
 - **Título H1 Tiendanube (Editorial y de Marca - Entre 58 y 68 caracteres):** [Ej: Set x4 Tazas Apilables de Cerámica Texturada con Rack Metálico (285 ml)]
 - **Categoría Exacta Sugerida (Tiendanube - Catálogo Home & Deco):** [Ruta jerárquica exacta, ej: Bazar y Cocina > Vajilla > Tazas y Mugs]
@@ -90,15 +91,16 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
 
 === BLOQUE 2: DESCRIPCIÓN TIENDANUBE (HTML LIMPIO H2 / H3) ===
 
-<h2>[TITULAR EMOCIONAL EN MAYÚSCULAS QUE CONECTE CON EL RITUAL DIARIO Y LA CALIDEZ DEL HOGAR]</h2>
 <p><strong>Colección / Línea:</strong> [Nombre de la línea o colección UTAMA]</p>
-<p>[Párrafo introductorio sensorial de 2 a 3 líneas: hacé que el cliente visualice y sienta el producto en uso dentro de su casa, destacando la armonía del estilo ${ctx.style} y la nobleza del ${ctx.material}.]</p>
 
-<h3>¿Por qué este producto transformará tu espacio?</h3>
+<h2>[Titular corto en formato oración —máx. 55 caracteres, NO en mayúsculas— que resuelva el problema principal del usuario]</h2>
+<p>[Párrafo directo de 2 a 3 líneas: atacá el problema cotidiano del usuario y mostrá cómo este producto en ${ctx.material} (${ctx.dims}) aporta orden, funcionalidad y calidez ${ctx.style} al instante.]</p>
+
+<h3>¿Por qué este producto transformará tu rutina?</h3>
 <ul>
-  <li><strong>[Beneficio Sensorial / Estético]:</strong> [Redactado con estructura Característica -> Ventaja -> Impacto emocional, integrando: ${ctx.enrichment.argumentosVenta}].</li>
-  <li><strong>[Beneficio Funcional / Orden]:</strong> [Cómo simplifica la rutina diaria, ahorra espacio o mejora la experiencia de uso, destacando: ${ctx.feature}].</li>
-  <li><strong>[Proporción y Versatilidad]:</strong> [Por qué sus medidas (${ctx.dims}) se adaptan con equilibrio a distintos ambientes sin recargar visualmente].</li>
+  <li><strong>[Beneficio Funcional / Problema Resuelto]:</strong> [Redactado con estructura Característica -> Ventaja -> Impacto diario, integrando: ${ctx.enrichment.argumentosVenta}].</li>
+  <li><strong>[Beneficio Práctico / Orden o Uso]:</strong> [Cómo simplifica el día a día, ahorra espacio o mejora la experiencia, destacando: ${ctx.feature}].</li>
+  <li><strong>[Proporción y Versatilidad]:</strong> [Por qué sus medidas exactas (${ctx.dims}) se adaptan con equilibrio a distintos ambientes sin recargar visualmente].</li>
 </ul>
 
 <h3>Especificaciones Técnicas y Embalaje</h3>
@@ -120,11 +122,11 @@ ESTRUCTURA DE SALIDA OBLIGATORIA:
   <li><strong>¿Cómo se procesan los pagos?</strong> 💳 <strong>Pagos Seguros:</strong> Transferencias automáticas procesadas de forma segura y transparente por <strong>Pago Nube (DLocal Argentina)</strong>. El sistema valida tu pago al instante sin necesidad de enviar comprobantes.</li>
   <li><strong>¿Tienen stock disponible y cuándo despachan?</strong> Sí, si la publicación está activa contamos con stock real. Despachamos todos los pedidos dentro de las 24 hs hábiles (y contamos con envío Express en el día para CABA y Zona Norte comprando antes de las 13 hs).</li>
   <li><strong>¿Hacen envíos a todo el país y cómo protegen los productos frágiles?</strong> Sí, llegamos a toda Argentina. Cada pieza se embala cuidadosamente con doble protección anti-impacto y caja reforzada para que llegue impecable a tus manos.</li>
-  <li><strong>¿Realizan cambios o devoluciones?</strong> Sí, tenés 30 días corridos desde que recibís tu compra para gestionar cambios o devoluciones si el producto no era lo que esperabas, siempre que esté sin uso y en su embalaje original.</li>
-  <li><strong>¿Es resistente el material?</strong> [Respuesta breve y contundente de 1-2 líneas justificando la resistencia, terminación y durabilidad del ${ctx.material}].</li>
+  <li><strong>¿Realizan cambios o devoluciones?</strong> Sí, tenés 30 días corridos desde que recibís tu compra para gestionar cambios o devoluciones (<a href="/politica-de-devolucion1">ver política completa</a>), siempre que el producto esté sin uso y en su embalaje original.</li>
+  <li><strong>¿Es resistente el material?</strong> [Respuesta breve y contundente de 1-2 líneas justificando la resistencia, terminación y durabilidad del ${ctx.material}]. ¿Tenés otra duda? <a href="/contacto">Escribinos acá</a>.</li>
 </ul>
 
-<p><strong>[CTA DE CIERRE PERSUASIVO: Ej: Sumá calidez y diseño a tus días. Agregalo al carrito ahora y aprovechá 20% OFF abonando con transferencia bancaria instantánea.]</strong></p>
+<p><strong>[CTA DE CIERRE PERSUASIVO: Ej: Sumá orden y calidez a tus días hoy. Agregalo al carrito ahora y aprovechá 20% OFF abonando con transferencia bancaria instantánea.]</strong></p>
 
 ---
 
@@ -173,7 +175,7 @@ SUGERENCIAS DE USO Y AMBIENTACIÓN
 - [Idea concreta 2 de combinación o funcionalidad].
 
 PREGUNTAS FRECUENTES
-- ¿Emiten factura? Emitimos Facturadores de Factura C, la cual se emite automáticamente según los datos fiscales cargados en tu cuenta de Mercado Libre al momento de realizar la compra.
+- ¿Emiten factura? Sí, emitimos Factura C, la cual se genera automáticamente según los datos fiscales cargados en tu cuenta de Mercado Libre al momento de realizar la compra.
 - ¿Tienen stock disponible y cuándo despachan? Sí, si la publicación está activa tenemos stock disponible. Despachamos todos los pedidos en tiempo y forma dentro de las 24 hs hábiles.
 - ¿Cómo llega embalado el producto? Despachamos cada pieza con doble protección anti-impacto y embalaje reforzado para asegurar que llegue intacto a cualquier punto del país.
 - ¿Hacen envíos en el día (Flex)? Sí, comprando antes del horario de corte indicado en la publicación, recibís tu pedido en el día en CABA y zonas habilitadas de GBA.
